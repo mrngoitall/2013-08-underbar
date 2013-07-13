@@ -48,12 +48,17 @@ var _ = { };
     var index;
     _.each(array,function(value,i) {
 	    if (value === target && index === undefined) index = i ;
-    })
+    });
     return index != undefined ? index : -1;    
   };
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, iterator) {
+  	var filtered = [];
+  	_.each(collection,function(value) {
+	  	if (iterator(value)) filtered.push(value);
+  	});
+  	return filtered;
   };
 
   // Return all elements of an array that don't pass a truth test.
