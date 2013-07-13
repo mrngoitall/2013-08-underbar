@@ -45,6 +45,11 @@ var _ = { };
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
+    var index;
+    _.each(array,function(value,i) {
+	    if (value === target && index === undefined) index = i ;
+    })
+    return index != undefined ? index : -1;    
   };
 
   // Return all elements of an array that pass a truth test.
