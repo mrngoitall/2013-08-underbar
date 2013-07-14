@@ -72,6 +72,12 @@ var _ = { };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array) {
+  	var uniqueArray = [];
+  	_.each(array,function(value) {
+	  	if (_.indexOf(uniqueArray,value) === -1)
+	  		uniqueArray.push(value);
+  	});
+  	return uniqueArray;
   };
 
 
