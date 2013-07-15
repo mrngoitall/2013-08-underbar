@@ -132,6 +132,11 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
+  	var init = initialValue || 0;
+  	_.each(collection,function(value) {
+	  	init = iterator(init,value);
+  	});
+  	return init;
   };
 
   // Determine if the array or object contains a given value (using `===`).
