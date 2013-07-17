@@ -138,9 +138,10 @@ var _ = { };
   //   }, 0); // should be 6
   //
   _.reduce = function(collection, iterator, initialValue) {
-  	var init = initialValue || 0;
-  	_.each(collection,function(value) {
-	  	init = iterator(init,value);
+  	var init = initialValue != undefined ? initialValue : collection[0];
+  	_.each(collection,function(value, index) {
+	  	if ((initialValue === undefined && index > 0) || (initialValue != undefined))
+	  		init = iterator(init,value);
   	});
   	return init;
   };
