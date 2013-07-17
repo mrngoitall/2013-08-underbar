@@ -33,8 +33,14 @@ var _ = { };
 	  	 	iterator(collection[i],i,collection);	
 	  	}
 	} else {
+		/* Original solution
 		for (var i=0, k = Object.keys(collection); i < k.length; i++) {
 			iterator(collection[k[i]],k[i],collection);
+		}
+		*/
+		// Suggested revision
+		for (var key in collection) {
+		    iterator(collection[key], key, collection);
 		}
 	}
   };
