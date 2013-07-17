@@ -175,11 +175,12 @@ var _ = { };
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
     // "some" are true if not "every" one is false.
+    iterator = iterator || function(item) { return item; };
     // Since this _.every() will return true when all values are false, we flip the returned value.
     return !_.every(collection, function(item) {
     	// Added a special exception for null values, since they're neither true nor false. 
     	// For our purposes here, we'll want to count null values as false.
-    	return typeof iterator === 'function' ? iterator(item) == false || iterator(item) == null: item == false || item == null;
+    	return iterator(item) == false || iterator(item) == null;
     	// There's got to be a shorter way of writing that...
     });
   };
