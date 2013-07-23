@@ -181,7 +181,6 @@ var _ = { };
     	// Added a special exception for null values, since they're neither true nor false. 
     	// For our purposes here, we'll want to count null values as false.
     	return iterator(item) == false || iterator(item) == null;
-    	// There's got to be a shorter way of writing that...
     });
   };
 
@@ -262,6 +261,11 @@ var _ = { };
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+  	return function(){
+  		var results = {};
+  		results[arguments[0]] = results[arguments[0]] || func.apply(this,arguments);
+  		return results[arguments[0]];
+   	};
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -271,6 +275,11 @@ var _ = { };
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+   	var newargs = [].slice.call(arguments,2);
+	setTimeout(
+		function() {
+			func.apply(this,newargs)
+		}, wait);
   };
 
 
@@ -281,6 +290,9 @@ var _ = { };
 
   // Shuffle an array.
   _.shuffle = function(array) {
+	return array.slice(0).sort(function(a,b) {
+	  	return -Math.random()*2-1;
+  	});
   };
 
 
